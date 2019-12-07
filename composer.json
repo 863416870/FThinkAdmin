@@ -1,5 +1,5 @@
 {
-    "name": "faner/f-think-admin",
+    "name": "863416870/f-think-admin",
     "description": "ThinkPHP Basic Library",
     "type": "project",
     "license": "MIT",
@@ -10,10 +10,12 @@
         }
     ],
     "require": {
+        "php": ">=5.6"
     },
-    "autoload": {
+   "minimum-stability": "stable",
+      "autoload": {
         "psr-4": {
-            "FThinkadmin\\": "src"
+            "FThinkadmin\\": "src/"
         }
     }
 }
