@@ -14,7 +14,7 @@
         "topthink/framework": "5.1.*"
     },
    "minimum-stability": "stable",
-      "autoload": {
+    "autoload": {
         "psr-4": {
             "FThinkadmin\\": "src"
         }
