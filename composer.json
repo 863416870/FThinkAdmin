@@ -1,0 +1,14 @@
+{
+    "name": "fanguojie/f-think-admin",
+    "description": "ThinkPHP Basic Library",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "fanguojie",
+            "email": "fanguojie@sxjicheng.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
