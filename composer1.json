@@ -1,0 +1,15 @@
+{
+  "type": "library",
+  "name": "fanguojie/f-think-admin",
+  "license": "MIT",
+  "description": "ThinkPHP Basic Library",
+  "require": {
+    "php": ">=5.4",
+    "topthink/framework": "5.1.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "FThinkadmin\\": "src"
+    }
+  }
+}
