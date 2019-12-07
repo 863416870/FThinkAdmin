@@ -6,9 +6,17 @@
     "authors": [
         {
             "name": "fanguojie",
-            "email": "fanguojie@sxjicheng.com"
+            "email": "fanguojie@qq.com"
         }
     ],
     "minimum-stability": "dev",
-    "require": {}
+    "require": {
+        "php": ">=5.4",
+        "topthink/framework": "5.1.*",
+    },
+    "autoload": {
+        "psr-4": {
+            "FThinkadmin\\": "src"
+        }
+    }
 }
