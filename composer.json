@@ -1,21 +1,15 @@
 {
-    "name": "fanguojie/f-think-admin",
-    "description": "ThinkPHP Basic Library",
-    "type": "library",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "fanguojie",
-            "email": "fanguojie@qq.com"
-        }
-    ],
-    "require": {
-        "php": ">=5.6",
-        "topthink/framework": "5.1.*"
-    },
-     "autoload": {
-        "psr-4": {
-            "FThinkadmin\\": "src"
-        }
+  "type": "library",
+  "name": "fanguojie/f-think-admin",
+  "license": "MIT",
+  "description": "ThinkPHP Basic Library",
+  "require": {
+    "php": ">=5.4",
+    "topthink/framework": "5.1.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "FThinkadmin\\": "src"
     }
+  }
 }
