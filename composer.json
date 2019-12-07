@@ -1,7 +1,7 @@
 {
-    "name": "863416870/f-think-admin",
+    "name": "fanguojie/f-think-admin",
     "description": "ThinkPHP Basic Library",
-    "type": "project",
+    "type": "library",
     "license": "MIT",
     "authors": [
         {
