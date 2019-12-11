@@ -5,13 +5,13 @@
     "authors": [
         {
             "name": "fanguojie",
-            "email": "fanguojie@sxjicheng.com"
+            "email": "863416870@qq.com"
         }
     ],
     "require": {},
     "autoload": {
         "psr-4": {
-            "FThinkadmin\\": "src"
+            "library\\": "src"
         }
     }
 }
