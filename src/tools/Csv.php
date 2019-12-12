@@ -23,7 +23,7 @@ class Csv
         fputcsv($handle, $headers);
         if (is_resource($handle)) fclose($handle);
     }
-    
+
     /**
      * 写入CSV文件内容
      * @param array $list 数据列表(二维数组或多维数组)
