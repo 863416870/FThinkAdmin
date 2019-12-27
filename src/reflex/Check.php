@@ -7,7 +7,7 @@
  */
 namespace library\reflex;
 
-class Check
+trait Check
 {
     public static function checkParamIsObject($param){
         if (!is_object($param)) {
