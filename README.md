@@ -1,3 +1,11 @@
+#git
+````
+git tag -a v0.21 -m "publish v0.21 version"
+git push origin v0.21
+
+git tag -d v0.21
+git push origin :refs/tags/v0.21
+````
 # php
  ####通用网络请求
  ````
