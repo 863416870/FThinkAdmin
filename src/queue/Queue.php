@@ -1,13 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 2019/12/28
- * Time: 18:47
- */
 namespace library\queue;
 
-abstract class Queue implements library\interfaces\Queue
+/**
+ * 队列抽象类
+ * Class Queue
+ * @package library\queue
+ */
+abstract class Queue implements \library\interfaces\Queue
 {
     /**
      * 默认队列长度
@@ -27,6 +26,7 @@ abstract class Queue implements library\interfaces\Queue
     {
         $this->setMaxSize($maxSize);
     }
+
     public function setMaxSize(int $size)
     {
         if(!$size || $size > static::DEFUALT_MAX_SIZE)
@@ -35,10 +35,12 @@ abstract class Queue implements library\interfaces\Queue
         }
         $this->maxSize = $size;
     }
+
     public function getMaxSize(): int
     {
         return $this->maxSize;
     }
+
     public function isFull(): bool
     {
         return $this->count() >= $this->getMaxSize();

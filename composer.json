@@ -1,5 +1,6 @@
 {
     "name": "fanguojie/f-think-admin",
+    "description": "简单常用工具",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -13,5 +14,8 @@
         "psr-4": {
             "library\\": "src"
         }
+    },
+    "suggest": {
+        "ext-swoole": "安装 swoole 可支持并行"
     }
 }
