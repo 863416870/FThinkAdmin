@@ -122,3 +122,18 @@ $many->to(function($ser, $list){
 });
 ```
 
+**Redis**
+
+```php
+use library\tools\RedisBase;
+
+$redisBase = new RedisBase($option,$section = 'default');
+$option参数
+ ["host" => "127.0.0.1",
+"port" => "6379",
+"connect_timeout" => "1.5",
+"connect_retry_delay" => '100', //毫秒
+"connect_retry_times" => 3,
+"password" => '',]
+```
+

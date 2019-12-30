@@ -20,8 +20,6 @@ class ConnMgr
     private function __construct()
     {
     }
-
-
     /**
      * getInstance 
      *
@@ -31,13 +29,13 @@ class ConnMgr
      * 
      * @return void
      */
-    public static function getInstance($section = 'default')
+    public static function getInstance(array $options, $section = 'default')
     {
         if (isset(self::$instances[$section])) {
             return self::$instances[$section];
         }
 
-        $conn = self::getConnect($section);
+        $conn = self::getConnect($options, $section);
         if ($conn == false) {
             return false;
         }
@@ -47,8 +45,8 @@ class ConnMgr
     }
 
     //连接redis
-    private static function getConnect($section){
-        $configArr = self::getConfig($section);
+    private static function getConnect(array $options, $section){
+        $configArr = self::getConfig($options, $section);
         if(empty($configArr)){
             return false; 
         }
@@ -76,27 +74,22 @@ class ConnMgr
     }
 
     //获取redis连接配置
-    private static function getConfig($section){
+    private static function getConfig(array $options, $section){
         $confMap = array(
             //默认业务redis，线上线下隔离
             "default" => array(
-                "host" => "47.93.119.95",
-                "port" => "6379",
-                "connect_timeout" => "1.5",
-                "connect_retry_delay" => '100', //毫秒
-                "connect_retry_times" => 3,
-                "password" => '8a42f6a4f0656076bacaa4771179f7d6',
-            ),
-            "new" => array(
                 "host" => "127.0.0.1",
                 "port" => "6379",
                 "connect_timeout" => "1.5",
                 "connect_retry_delay" => '100', //毫秒
                 "connect_retry_times" => 3,
-                "password" => '8a42f6a4f0656076bacaa4771179f7d6',
+                "password" => '',
             ),
         );
-
+        $mergeData = new \library\tools\Options($options);
+        if(!empty($mergeData)){
+            $confMap[$section] = array_merge($confMap[$section],$mergeData);
+        }
         if(!isset($confMap[$section])){
             return array();
         }
