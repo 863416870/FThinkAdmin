@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 2019/12/30
- * Time: 16:12
- */
-
 namespace library;
 
 use library\helper\DeleteHelper;
@@ -14,7 +7,6 @@ use library\helper\InputHelper;
 use library\helper\PageHelper;
 use library\helper\QueryHelper;
 use library\helper\SaveHelper;
-use library\helper\TokenHelper;
 use library\helper\ValidateHelper;
 use think\App;
 use think\Container;
@@ -141,11 +133,7 @@ class Controller
     public function fetch($tpl = '', $vars = [], $node = null)
     {
         foreach ($this as $name => $value) $vars[$name] = $value;
-        if ($this->csrf_state) {
-            TokenHelper::instance()->fetchTemplate($tpl, $vars, $node);
-        } else {
-            throw new HttpResponseException(view($tpl, $vars));
-        }
+        throw new HttpResponseException(view($tpl, $vars));
     }
 
     /**
@@ -198,7 +186,6 @@ class Controller
      * 快捷分页逻辑器
      * @param string|Query $dbQuery
      * @param boolean $page 是否启用分页
-     * @param boolean $display 是否渲染模板
      * @param boolean $total 集合分页记录数
      * @param integer $limit 集合每页记录数
      * @return array
@@ -208,9 +195,9 @@ class Controller
      * @throws \think\exception\DbException
      * @throws \think\exception\PDOException
      */
-    protected function _page($dbQuery, $page = true, $display = true, $total = false, $limit = 0)
+    protected function _page($dbQuery, $page = true,  $total = false, $limit = 0)
     {
-        return PageHelper::instance()->init($dbQuery, $page, $display, $total, $limit);
+        return PageHelper::instance()->init($dbQuery, $page, $total, $limit);
     }
 
     /**

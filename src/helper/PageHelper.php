@@ -31,17 +31,11 @@ class PageHelper extends Helper
      */
     protected $limit;
 
-    /**
-     * 是否渲染模板
-     * @var boolean
-     */
-    protected $display;
 
     /**
      * 逻辑器初始化
      * @param string|Query $dbQuery
      * @param boolean $page 是否启用分页
-     * @param boolean $display 是否渲染模板
      * @param boolean $total 集合分页记录数
      * @param integer $limit 集合每页记录数
      * @return array
@@ -51,12 +45,11 @@ class PageHelper extends Helper
      * @throws \think\exception\DbException
      * @throws \think\exception\PDOException
      */
-    public function init($dbQuery, $page = true, $display = true, $total = false, $limit = 0)
+    public function init($dbQuery, $page = true, $total = false, $limit = 0)
     {
         $this->page = $page;
         $this->total = $total;
         $this->limit = $limit;
-        $this->display = $display;
         $this->query = $this->buildQuery($dbQuery);
         // 列表排序操作
         if ($this->controller->request->isPost()) $this->_sort();
@@ -70,21 +63,12 @@ class PageHelper extends Helper
             $limit = intval($this->controller->request->get('limit', cookie('page-limit')));
             cookie('page-limit', $limit = $limit >= 10 ? $limit : 20);
             if ($this->limit > 0) $limit = $this->limit;
-            $rows = [];
-            $page = $this->query->paginate($limit, $this->total, ['query' => ($query = $this->controller->request->get())]);
-            foreach ([10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200] as $num) {
-                list($query['limit'], $query['page'], $selected) = [$num, '1', $limit === $num ? 'selected' : ''];
-                $url = url('@admin') . '#' . $this->controller->request->baseUrl() . '?' . urldecode(http_build_query($query));
-                array_push($rows, "<option data-num='{$num}' value='{$url}' {$selected}>{$num}</option>");
-            }
-            $select = "<select onchange='location.href=this.options[this.selectedIndex].value' data-auto-none>" . join('', $rows) . "</select>";
-            $html = "<div class='pagination-container nowrap'><span>共 {$page->total()} 条记录，每页显示 {$select} 条，共 {$page->lastPage()} 页当前显示第 {$page->currentPage()} 页。</span>{$page->render()}</div>";
-            $this->controller->assign('pagehtml', preg_replace('|href="(.*?)"|', 'data-open="$1" onclick="return false" href="$1"', $html));
+            $page = $this->query->paginate($limit, $total, ['query' => ($query = $this->controller->request->get())]);
             $result = ['page' => ['limit' => intval($limit), 'total' => intval($page->total()), 'pages' => intval($page->lastPage()), 'current' => intval($page->currentPage())], 'list' => $page->items()];
         } else {
             $result = ['list' => $this->query->select()];
         }
-        if (false !== $this->controller->callback('_page_filter', $result['list']) && $this->display) {
+        if (false !== $this->controller->callback('_page_filter', $result['list'])) {
             return $this->controller->fetch('', $result);
         }
         return $result;
