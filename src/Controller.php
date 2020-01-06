@@ -94,9 +94,12 @@ class Controller
      * @param array $data 返回数据
      * @param integer $code 返回代码
      */
-    public function error($info, $data = [], $code = 0)
+    public function error($info, $data = [],  $code = 1)
     {
-        $result = ['code' => $code, 'info' => $info, 'data' => $data];
+        $keys = config('response.res_one');
+        $result = empty($keys) ?
+            ['code' => $code, 'info' => $info, 'data' => $data] :
+            array_combine(array_values($keys),['code' => $code, 'info' => $info, 'data' => $data]);
         throw new HttpResponseException(json($result));
     }
 
@@ -106,11 +109,14 @@ class Controller
      * @param array $data 返回数据
      * @param integer $code 返回代码
      */
-    public function success($info, $data = [], $code = 1)
+    public function success($info, $data = [],  $code = 0)
     {
-        throw new HttpResponseException(json([
-            'code' => $code, 'info' => $info, 'data' => $data,
-        ]));
+        $keys = config('response.res_one');
+        $result = empty($keys) ?
+            ['code' => $code, 'info' => $info,'data' => $data] :
+            array_combine(array_values($keys),['code' => $code, 'info' => $info, 'data' => $data]);
+
+        throw new HttpResponseException(json($result));
     }
 
     /**

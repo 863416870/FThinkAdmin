@@ -69,9 +69,9 @@ class PageHelper extends Helper
             $result = ['list' => $this->query->select()];
         }
         if (false !== $this->controller->callback('_page_filter', $result['list'])) {
-            return $this->controller->fetch('', $result);
+            return $this->controller->success('分页成功, 正在刷新页面！', $result);
         }
-        return $result;
+        return $this->controller->success('分页成功, 正在刷新页面！', $result);
     }
 
     /**
