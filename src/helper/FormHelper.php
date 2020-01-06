@@ -77,7 +77,7 @@ class FormHelper extends Helper
                     if ($result !== false) $this->controller->success('恭喜, 数据保存成功!', '');
                     $this->controller->error('数据保存失败, 请稍候再试!');
                 }
-                return $result;
+                return $this->controller->success('...此处不知说啥好', $result);
             }
         }
     }
