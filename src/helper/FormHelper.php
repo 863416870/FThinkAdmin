@@ -38,15 +38,8 @@ class FormHelper extends Helper
     protected $data;
 
     /**
-     * 模板名称
-     * @var string
-     */
-    protected $template;
-
-    /**
      * 逻辑器初始化
      * @param string|Query $dbQuery
-     * @param string $template 模板名称
      * @param string $field 指定数据主键
      * @param array $where 额外更新条件
      * @param array $data 表单扩展数据
@@ -57,10 +50,10 @@ class FormHelper extends Helper
      * @throws \think\exception\DbException
      * @throws \think\exception\PDOException
      */
-    public function init($dbQuery, $template = '', $field = '', $where = [], $data = [])
+    public function init($dbQuery, $field = '', $where = [], $data = [])
     {
         $this->query = $this->buildQuery($dbQuery);
-        list($this->template, $this->where, $this->data) = [$template, $where, $data];
+        list($this->where, $this->data) = [$where, $data];
         $this->field = empty($field) ? ($this->query->getPk() ? $this->query->getPk() : 'id') : $field;;
         $this->value = input($this->field, isset($data[$this->field]) ? $data[$this->field] : null);
         // GET请求, 获取数据并显示表单页面
@@ -71,9 +64,9 @@ class FormHelper extends Helper
             }
             $data = array_merge($data, $this->data);
             if (false !== $this->controller->callback('_form_filter', $data)) {
-                return $this->controller->fetch($this->template, ['vo' => $data]);
+                return $this->controller->success('恭喜, 数据获取成功!', $data);
             }
-            return $data;
+            return $this->controller->success('恭喜, 数据获取成功!', $data);
         }
         // POST请求, 数据自动存库处理
         if ($this->app->request->isPost()) {
