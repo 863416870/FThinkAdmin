@@ -209,7 +209,6 @@ class Controller
     /**
      * 快捷表单逻辑器
      * @param string|Query $dbQuery
-     * @param string $template 模板名称
      * @param string $field 指定数据对象主键
      * @param array $where 额外更新条件
      * @param array $data 表单扩展数据
@@ -220,9 +219,9 @@ class Controller
      * @throws \think\exception\DbException
      * @throws \think\exception\PDOException
      */
-    protected function _form($dbQuery, $template = '', $field = '', $where = [], $data = [])
+    protected function _form($dbQuery, $field = '', $where = [], $data = [])
     {
-        return FormHelper::instance()->init($dbQuery, $template, $field, $where, $data);
+        return FormHelper::instance()->init($dbQuery, $field, $where, $data);
     }
 
     /**
