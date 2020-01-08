@@ -42,53 +42,24 @@ class File
      */
     protected static $object = [];
 
-//    /**
-//     * 文件存储参数
-//     * @var array
-//     */
-//    protected static $params = [
-//        'const' => [
-//            'storage_type' => '文件存储类型',
-//        ],
-//        'local' => [
-//            'storage_local_exts' => '文件上传允许类型后缀',
-//        ],
-//        'oss'   => [
-//            'storage_oss_domain'   => '文件访问域名',
-//            'storage_oss_keyid'    => '接口授权AppId',
-//            'storage_oss_secret'   => '接口授权AppSecret',
-//            'storage_oss_bucket'   => '文件存储空间名称',
-//            'storage_oss_is_https' => '文件HTTP访问协议',
-//            'storage_oss_endpoint' => '文件存储节点域名',
-//        ],
-//        'qiniu' => [
-//            'storage_qiniu_region'     => '文件存储节点',
-//            'storage_qiniu_domain'     => '文件访问域名',
-//            'storage_qiniu_bucket'     => '文件存储空间名称',
-//            'storage_qiniu_is_https'   => '文件HTTP访问协议',
-//            'storage_qiniu_access_key' => '接口授权AccessKey',
-//            'storage_qiniu_secret_key' => '接口授权SecretKey',
-//        ],
-//    ];
-
     /**
      * 文件存储参数
      * @var array
      */
     protected static $params = [
         'const' => [
-            'storage_type' => 'oss',//文件存储类型
+            'storage_type' => '文件存储类型',
         ],
         'local' => [
-            'storage_local_exts' => 'doc,gif,icon,jpg,mp3,mp4,p12,pem,png,rar',//文件上传允许类型后缀
+            'storage_local_exts' => '文件上传允许类型后缀',
         ],
         'oss'   => [
-            'storage_oss_domain'   => 'fanguojie.oss-cn-beijing.aliyuncs.com',//文件访问域名
-            'storage_oss_keyid'    => 'LTAIUpHwhn4OsDy3',//接口授权AppId
-            'storage_oss_secret'   => 'jB3fVambbCeBHZb1uyeEZfDiUiNoUi',//接口授权AppSecret
-            'storage_oss_bucket'   => 'fanguojie',//文件存储空间名称
-            'storage_oss_is_https' => 'https',//文件HTTP访问协议
-            'storage_oss_endpoint' => 'oss-cn-beijing.aliyuncs.com',//文件存储节点域名
+            'storage_oss_domain'   => '文件访问域名',
+            'storage_oss_keyid'    => '接口授权AppId',
+            'storage_oss_secret'   => '接口授权AppSecret',
+            'storage_oss_bucket'   => '文件存储空间名称',
+            'storage_oss_is_https' => '文件HTTP访问协议',
+            'storage_oss_endpoint' => '文件存储节点域名',
         ],
         'qiniu' => [
             'storage_qiniu_region'     => '文件存储节点',
@@ -99,6 +70,8 @@ class File
             'storage_qiniu_secret_key' => '接口授权SecretKey',
         ],
     ];
+
+
 
     /**
      * 静态魔术方法
